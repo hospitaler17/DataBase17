@@ -1,0 +1,19 @@
+﻿...
+3. Таблицы через SELECT
+SELECT * FROM Lb2.Employee;
+SELECT * FROM Lb2.Position;
+SELECT * FROM Lb2.Work;
+SELECT * FROM Lb2.Work_place;
+*** Примеры ***
+INSERT INTO Lb2.Work(ID,date, employee, work_place, position, pay) VALUES(33333,'1999-01-00' 3, 3, 3, 3333);
+UPDATE Lb2.Work SET position=3; - все занятые должности стали = 3
+UPDATE Lb2.Work SET position=7 WHERE num_hours >= 40 LIMIT 3;
+DELETE FROM Lb2.Work WHERE ID =33333;
+DELETE FROM Lb2.Work WHERE pay =3333;
+
+
+7.
+	a)SELECT DISTINCT Work_place.name FROM Lb2.`Work`, Lb2.Work_place, Lb2.Position WHERE Work_place.ID = `Work`.work_place AND Position.ID = `Work`.position AND Position.name = 'Доцент';
+	b)SELECT Employee.surname, Employee.tax FROM Lb2.`Work`, Lb2.Employee, Lb2.Position WHERE Employee.ID = `Work`.employee AND Position.ID = `Work`.position AND Position.payment < 1500 AND `Work`.date >= '1999-06-00';
+	c)SELECT DISTINCT Work_place.name, Work_place.pension FROM Work_place, Employee, Work WHERE Work.work_place = Work_place.ID AND Work.employee = Employee.ID AND Employee.surname = 'Алексанов' AND Employee.ID IN (SELECT DISTINCT Work.employee FROM Work GROUP BY  Work.employee, Work.work_place HAVING COUNT(*) > 1);
+	d)SELECT Work.ID, Work_place.name, Employee.surname FROM Work_place, Employee, Work WHERE Employee.ID = Work.employee AND Work_place.ID = Work.work_place AND Employee.address = 'Советский' ORDER BY Work_place.name;
