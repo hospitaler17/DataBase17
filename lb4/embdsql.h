@@ -5,7 +5,8 @@
 
 typedef struct Request {
     int  numb;
-    char text[LEN];
+    char text1[LEN];
+	char text2[LEN];
 } Request;
 int  db_connect (char * pass);
 int  task_a (const Request * req);
